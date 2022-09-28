@@ -58,7 +58,7 @@
   "Description": "This plugin lets you control your IKEA Trådfri devices.",
   "Name": "Trådfri",
   "Icon": "Images/pluginIcon",
-  "URL": "https://heinandre.no",
+  "URL": "https://heinandre.no/streamdeck-tradfri",
   "Version": "1.0",
   "SDKVersion": 2,
   "Software": {
