@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MyPlugin Property Inspector</title>
+    <link rel="stylesheet" href="css/sdpi.css">
+    <link rel="stylesheet" href="css/property-inspector.css">
+</head>
+<body>
+    <div class="sdpi-wrapper">
+        <!-- for more examples of the types of fields supported in property inspector visit:
+            Elgato Github PiSamples -> https://github.com/elgatosf/streamdeck-pisamples
+            and
+            Elgato SDK Documentation -> https://developer.elgato.com/documentation/stream-deck/sdk/property-inspector/
+        -->
+
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Light</div>
+            <input id="txtLight" class="sdpi-item-value" type="text" onchange="setSettings(event.target.value, 'Light')" />
+        </div>
+
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Dimmer</div>
+            <input id="txtDimmer" class="sdpi-item-value" type="text" max="100" min="0" onchange="setSettings(event.target.value, 'Dimmer')" />
+        </div>
+
+    </div>
+    <script src="js/property-inspector-light.js"></script>
+</body>
+</html>

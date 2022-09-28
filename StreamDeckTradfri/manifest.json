@@ -1,0 +1,77 @@
+{
+  "Actions": [
+    {
+      "Icon": "Images/aiSetLight",
+      "Name": "Set Light",
+      "States": [
+        {
+          "Image": "Images/icons/bulb02",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Sets a light to the desired intensity.",
+      "UUID": "no.heinandre.tradfri.action.set-light",
+      "PropertyInspectorPath": "PropertyInspector/property_inspector_light.html"
+    },
+
+    {
+      "Icon": "Images/aiSetBlind",
+      "Name": "Set Blind",
+      "States": [
+        {
+          "Image": "Images/icons/blind04",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Sets a blind to the desired position.",
+      "UUID": "no.heinandre.tradfri.action.set-blind",
+      "PropertyInspectorPath": "PropertyInspector/property_inspector_blind.html"
+    },
+
+    {
+      "Icon": "Images/aiGatewayInfo",
+      "Name": "Gateway Info",
+      "States": [
+        {
+          "Image": "Images/actionDefaultImage",
+          "TitleAlignment": "middle",
+          "FontSize": "10"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "",
+      "UUID": "no.heinandre.tradfri.action.gateway-info",
+      "PropertyInspectorPath": "PropertyInspector/property_inspector_gateway.html"
+    }
+  ],
+  "UUID": "no.heinandre.tradfri",
+  "Category": "Trådfri",
+  "CategoryIcon": "Images/category/categoryIcon",
+  "Disabled": false,
+  "Author": "@hagronnestad",
+  "CodePathWin": "StreamDeckTradfri.exe",
+  "CodePathMac": "StreamDeckTradfri",
+  "Description": "This plugin lets you control your IKEA Trådfri devices.",
+  "Name": "Trådfri",
+  "Icon": "Images/pluginIcon",
+  "URL": "https://heinandre.no",
+  "Version": "1.0",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "4.1"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<!-- When building/running on Windows -->
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<!-- When on non-Windows environment, assume macOS for now -->
+		<!-- At this time, the only platforms we are really targetting, and supported by the Stream Deck SDK are Windows and macOS  -->
+		<RuntimeIdentifiers Condition="'$(Configuration)'=='Release' ">win-x64;osx-x64</RuntimeIdentifiers>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	</PropertyGroup>
+
+	<!-- Post build event scripts that deploy to stream deck -->
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)'=='Debug'">
+		<Exec Command="powershell -ExecutionPolicy Unrestricted -file &quot;$(ProjectDir)RegisterPluginAndStartStreamDeck.ps1&quot;" />
+	</Target>
+	<ItemGroup>
+	  <None Remove="PropertyInspector\js\property-inspector-blind.js" />
+	  <None Remove="PropertyInspector\property_inspector_blinds.html" />
+	</ItemGroup>
+
+	<!--Dependencies-->
+	<ItemGroup>
+		<PackageReference Include="StreamDeckLib" Version="0.*" />
+		<PackageReference Include="StreamDeckLib.Config" Version="0.*" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.3" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+		<PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Serilog" Version="2.7.1" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+		<PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
+		<PackageReference Include="System.Net.WebSockets" Version="4.3.0" />
+		<PackageReference Include="Tomidix.CSharpTradFriLibrary" Version="1.5.0.43" />
+		<PackageReference Include="Zeroconf" Version="3.6.11" />
+	</ItemGroup>
+
+	<!--Deployment files that must go with the build executable -->
+	<ItemGroup>
+		<Content Include="manifest.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- Images that must be deployed with the executable -->
+	<ItemGroup>
+		<Content Include="Images\actionDefaultImage.png">
+				<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\actionDefaultImage%402x.png">
+				<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\pluginIcon.png">
+				<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\pluginIcon%402x.png">
+				<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\category\categoryIcon.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\category\categoryIcon%402x.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- Property Inspector Files -->
+	<ItemGroup>
+		<Content Include="PropertyInspector\css\property-inspector.css">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PropertyInspector\css\sdpi.css">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PropertyInspector\js\property-inspector-blind.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PropertyInspector\js\property-inspector-light.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+
+	</ItemGroup>
+
+	<!-- Build Helper -->
+	<ItemGroup>
+		<Content Include="StreamDeckTradfri.cmd">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- Include the README.md as part of the project for easy reference -->
+	<ItemGroup>
+		<Content Include="README.md">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- Post build scripts that must not be deployed with the executable -->
+	<ItemGroup>
+		<None Update="Images\actionIconGatewayInfo@2x.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\actionIconGatewayInfo.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\actionIconToggleIcon@2x.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\actionIconToggleIcon.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiGatewayInfo%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiGatewayInfo.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiSetBlind%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiSetBlind.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiSetLight%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\aiSetLight.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind01%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind01.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind02%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind02.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind03%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind03.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind04%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind04.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind05%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\blind05.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb01%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb01.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb02%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb02.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb03%402x.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\icons\bulb03.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="PropertyInspector\property_inspector_blind.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="PropertyInspector\property_inspector_gateway.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="PropertyInspector\property_inspector_light.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="RegisterPluginAndStartStreamDeck.ps1">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="RegisterPluginAndStartStreamDeck.sh">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>
