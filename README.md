@@ -1,5 +1,14 @@
 # IKEA Trådfri Stream Deck Plugin
 
+This is an IKEA Trådfri Plugin for the Elgato Stream Deck. This plugin connects your Elgato Stream Deck to your IKEA Trådfri Gateway and lets you control your devices.
+
+## Supported Devices & Actions
+
+- [x] Lights
+  - Turn ON/OFF or dim your lights
+- [x] Blinds
+  - Adjust your blinds to any position
+
 ## Installation
 
 - Download a release from the release section
