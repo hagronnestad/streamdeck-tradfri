@@ -1,6 +1,9 @@
 # IKEA Trådfri Stream Deck Plugin
 
+[![.NET](https://github.com/hagronnestad/streamdeck-tradfri/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hagronnestad/streamdeck-tradfri/actions/workflows/dotnet.yml)
+
 This is an IKEA Trådfri Plugin for the Elgato Stream Deck. This plugin connects your Elgato Stream Deck to your IKEA Trådfri Gateway and lets you control your devices.
+
 
 ## Supported Devices & Actions
 
