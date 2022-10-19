@@ -17,6 +17,7 @@ This is an IKEA Trådfri Plugin for the Elgato Stream Deck. This plugin connects
 - Download a release from the release section
 - Extract the release
 - Place the `no.heinandre.tradfri.sdPlugin` folder inside the Stream Deck plugins folder
+- Fully close and restart the `Stream Deck` application
 
 ### Plugin Folders
 
