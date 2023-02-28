@@ -6,7 +6,8 @@ var websocket = null,
     actionInfo = {},
     settingsModel = {
         Light: "",
-        Dimmer: 0
+        Dimmer: 0,
+        Color: "ffffff"
     };
 
 function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
@@ -19,10 +20,12 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
     if (actionInfo.payload.settings.settingsModel) {
         settingsModel.Light = actionInfo.payload.settings.settingsModel.Light;
         settingsModel.Dimmer = actionInfo.payload.settings.settingsModel.Dimmer;
+        settingsModel.Color = actionInfo.payload.settings.settingsModel.Color;
     }
 
     document.getElementById('txtLight').value = settingsModel.Light;
     document.getElementById('txtDimmer').value = settingsModel.Dimmer;
+    document.getElementById('txtColor').value = settingsModel.Color;
 
     websocket.onopen = function () {
         var json = { event: inRegisterEvent, uuid: inUUID };
@@ -44,6 +47,9 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
 
                     settingsModel.Dimmer = jsonObj.payload.settings.settingsModel.Dimmer;
                     document.getElementById('txtDimmer').value = settingsModel.Dimmer;
+
+                    ettingsModel.Color = jsonObj.payload.settings.settingsModel.Color;
+                    document.getElementById('txtColor').value = settingsModel.Color;
                 }
                 break;
             default:
