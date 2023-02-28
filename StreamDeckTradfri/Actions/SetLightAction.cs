@@ -12,8 +12,9 @@ namespace StreamDeckTradfri.Actions
     [ActionUuid(Uuid = "no.heinandre.tradfri.action.set-light")]
     public class SetLightAction : BaseStreamDeckActionWithSettingsModel<Models.SetLightActionSettings>
     {
-        public Dictionary<string, string> TradfriColors = new Dictionary<string, string>()
+        public Dictionary<string, string> TradfriColors = new()
         {
+            { "None", "" },
             { "Blue", "4a418a" },
             { "LightBlue", "6c83ba" },
             { "SaturatedPurple", "8f2686" },
