@@ -48,7 +48,7 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
                     settingsModel.Dimmer = jsonObj.payload.settings.settingsModel.Dimmer;
                     document.getElementById('txtDimmer').value = settingsModel.Dimmer;
 
-                    ettingsModel.Color = jsonObj.payload.settings.settingsModel.Color;
+                    settingsModel.Color = jsonObj.payload.settings.settingsModel.Color;
                     document.getElementById('txtColor').value = settingsModel.Color;
                 }
                 break;
