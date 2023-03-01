@@ -4,5 +4,7 @@
   {
         public string Light { get; set; } = "";
         public int Dimmer { get; set; } = 0;
-    }
+        public string Color { get; set; } = "";
+
+	}
 }
